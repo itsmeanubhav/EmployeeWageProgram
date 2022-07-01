@@ -8,6 +8,11 @@ public class UtilityFunctions {
     static int partTimeEmployeeMaxOneDayEffort = 4;
     static int DailyAttendanceCheck;
     int dailyWage = 0;
+    int max_WorkingHours = 100;
+    int max_NoOfDays = 20;
+    int monthlyWage;
+    int noOfDays;
+    int noOfHours;
     Scanner scanner = new Scanner(System.in);
     /*
     Use-Case 1 Logic Whether Employee Is Present Or Absent
@@ -39,10 +44,12 @@ public class UtilityFunctions {
             case "P" :
             case "p" :
                 dailyWage = perHourWage * permEmpMaxOneDayEffort;
+                System.out.println("Maximum Monthly Wage Possible For Permanent Employee Is : " + maximumWagePossible());
                 break;
             case "T" :
             case "t" :
                 dailyWage = partTimeEmployeeMaxOneDayEffort * perHourWage;
+                System.out.println("Maximum Monthly Wage Possible For Temporary Employee Is : " + maximumWagePossible());
                 break;
            default :
                 System.out.println("Please Provide only authorized input");
@@ -55,13 +62,10 @@ public class UtilityFunctions {
         Assuming there are 20 working days per month ,100 working hours per month
         */
     public int monthlyWage(){
-        int max_WorkingHours = 100;
-        int max_NoOfDays = 20;
-        int monthlyWage;
         System.out.println(" Please Enter Number Of Days Employee Had Worked");
-        int noOfDays = scanner.nextInt();
+        noOfDays = scanner.nextInt();
         System.out.println(" Please Enter Number Of Hours Employee Had Worked");
-        int noOfHours = scanner.nextInt();
+        noOfHours = scanner.nextInt();
 
         if(noOfHours  <= max_WorkingHours && noOfDays <= max_NoOfDays){
             monthlyWage = noOfDays * noOfHours * dailyWage;
@@ -73,5 +77,14 @@ public class UtilityFunctions {
             monthlyWage = noOfHours * 20 * dailyWage;
         }
         return monthlyWage;
+    }
+            /*
+            Use-Case 6 Logic for Calculating Maximum Monthly Wage for Mentioned Employee
+            Assuming there are 20 working days per month ,100 working hours per month
+            Calling dailyWage from dailyWageCalc()
+            */
+    public int maximumWagePossible(){
+        int maximumMonthlyWage = 100 * 20 * dailyWage;
+        return maximumMonthlyWage;
     }
 }
