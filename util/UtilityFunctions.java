@@ -7,17 +7,20 @@ public class UtilityFunctions {
     static int permEmpMaxOneDayEffort = 8;
     static int partTimeEmployeeMaxOneDayEffort = 4;
     static int DailyAttendanceCheck;
+    int dailyWage = 0;
+    Scanner scanner = new Scanner(System.in);
     /*
     Use-Case 1 Logic Whether Employee Is Present Or Absent
     dailyAttendance method generates A Random Number & Checks If Random Value Is Greater Than 0.5
     Employee Is Present OtherWise He/She is Absent
     */
-    public static void dailyAttendance(){
+    public void dailyAttendance(){
         double Attendance = Math.random();
         if(Attendance > 0.5){
             DailyAttendanceCheck = 1;
             System.out.println("Employee is Present ");
             System.out.println("Employee Daily Wage Is : " + dailyWageCalc());
+            System.out.println("Employee Monthly Wage Is : " + monthlyWage());
         }
         else{
             DailyAttendanceCheck = 0;
@@ -25,14 +28,12 @@ public class UtilityFunctions {
         }
     }
     /*
-    Use-Case 3 Logic for checking whether employee is Part time Or Permanent
+    Use-Case 3 & 4 Logic for checking whether employee is Part time Or Permanent
     You Have to Enter P for permanent or T for Temporary
     */
-    public static int dailyWageCalc(){
-        int dailyWage = 0;
+    public int dailyWageCalc(){
         System.out.println("Please enter P is if the employee is Permanent Employee or T for Temporary Employee");
-        Scanner scan = new Scanner(System.in);
-        String tempOrPerm = scan.next();
+        String tempOrPerm = scanner.next();
         //UC-4 Adding Switch Statement to Check whether the employee is Permanent or Temporary.
         switch(tempOrPerm){
             case "P" :
@@ -48,5 +49,29 @@ public class UtilityFunctions {
                 System.exit(0);
         }
         return dailyWage;
+    }
+        /*
+        Use-Case 5 Logic for Calculating Monthly Wages
+        Assuming there are 20 working days per month ,100 working hours per month
+        */
+    public int monthlyWage(){
+        int max_WorkingHours = 100;
+        int max_NoOfDays = 20;
+        int monthlyWage;
+        System.out.println(" Please Enter Number Of Days Employee Had Worked");
+        int noOfDays = scanner.nextInt();
+        System.out.println(" Please Enter Number Of Hours Employee Had Worked");
+        int noOfHours = scanner.nextInt();
+
+        if(noOfHours  <= max_WorkingHours && noOfDays <= max_NoOfDays){
+            monthlyWage = noOfDays * noOfHours * dailyWage;
+        }else if(noOfDays <= max_NoOfDays){
+            System.out.println("Number Of Hours Worked By Employee Could Not Be More Than 100 Setting Maximum Value For Number Of Hours Worked as 100");
+            monthlyWage = 100 * noOfDays * dailyWage;
+        }else{
+            System.out.println("Number Of Days Worked By Employee Could Not Be More Than 20 Setting Maximum Value For Number Of Days Worked as 20");
+            monthlyWage = noOfHours * 20 * dailyWage;
+        }
+        return monthlyWage;
     }
 }
