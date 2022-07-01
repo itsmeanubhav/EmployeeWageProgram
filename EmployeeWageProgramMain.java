@@ -6,7 +6,7 @@ public class EmployeeWageProgramMain {
     static int partTimeEmployeeMaxOneDayEffort = 4; //Default Max Hours for every Temporary employee to work
     public static void main(String[] args) {
         System.out.println("*****Welcome To Employee Wage Computation Program On Master Branch*********");
-        for(;;)
+
         UtilityFunctions.dailyAttendance();
 
     }
