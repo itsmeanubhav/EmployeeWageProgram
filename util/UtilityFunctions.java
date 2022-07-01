@@ -33,12 +33,19 @@ public class UtilityFunctions {
         System.out.println("Please enter P is if the employee is Permanent Employee or T for Temporary Employee");
         Scanner scan = new Scanner(System.in);
         String tempOrPerm = scan.next();
-        if(tempOrPerm.equals("P")){ //Press P if the Employee is Permanent
-            dailyWage = perHourWage * permEmpMaxOneDayEffort;
-        }else if(tempOrPerm.equals("T")){   //Press T if the employee is Temporary
-            dailyWage = partTimeEmployeeMaxOneDayEffort * perHourWage;
-        }else{  //if any other input is provided
-            System.out.println("Please Provide only authorized input");
+        //UC-4 Adding Switch Statement to Check whether the employee is Permanent or Temporary.
+        switch(tempOrPerm){
+            case "P" :
+            case "p" :
+                dailyWage = perHourWage * permEmpMaxOneDayEffort;
+                break;
+            case "T" :
+            case "t" :
+                dailyWage = partTimeEmployeeMaxOneDayEffort * perHourWage;
+                break;
+           default :
+                System.out.println("Please Provide only authorized input");
+                System.exit(0);
         }
         return dailyWage;
     }
