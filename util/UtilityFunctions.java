@@ -1,18 +1,10 @@
 package util;
-
 import java.util.Scanner;
 
 public class UtilityFunctions {
-    static int perHourWage = 20;
-    static int permEmpMaxOneDayEffort = 8;
-    static int partTimeEmployeeMaxOneDayEffort = 4;
-    static int DailyAttendanceCheck;
-    int dailyWage = 0;
-    int max_WorkingHours = 100;
-    int max_NoOfDays = 20;
-    int monthlyWage;
-    int noOfDays;
-    int noOfHours;
+    static int perHourWage = 20; static int permEmpMaxOneDayEffort = 8; static int partTimeEmployeeMaxOneDayEffort = 4;
+    static int DailyAttendanceCheck; int dailyWage = 0; int max_WorkingHours = 100; int max_NoOfDays = 20;
+    int monthlyWage; int noOfDays; int noOfHours;
     Scanner scanner = new Scanner(System.in);
     /*
     Use-Case 1 Logic Whether Employee Is Present Or Absent
@@ -26,8 +18,7 @@ public class UtilityFunctions {
             System.out.println("Employee is Present ");
             System.out.println("Employee Daily Wage Is : " + dailyWageCalc());
             System.out.println("Employee Monthly Wage Is : " + monthlyWage());
-        }
-        else{
+        } else{
             DailyAttendanceCheck = 0;
             System.out.println("Employee was Absent today that's why his today's Wage is : 0");
         }
@@ -37,9 +28,9 @@ public class UtilityFunctions {
     You Have to Enter P for permanent or T for Temporary
     */
     public int dailyWageCalc(){
-        System.out.println("Please enter P is if the employee is Permanent Employee or T for Temporary Employee");
+        System.out.println("Please enter P if the employee is Permanent Employee or T for Part Time Employee");
         String tempOrPerm = scanner.next();
-        //UC-4 Adding Switch Statement to Check whether the employee is Permanent or Temporary.
+        //UC-4 Adding Switch Statement to Check whether the employee is Permanent or Part Time.
         switch(tempOrPerm){
             case "P" :
             case "p" :
@@ -49,7 +40,7 @@ public class UtilityFunctions {
             case "T" :
             case "t" :
                 dailyWage = partTimeEmployeeMaxOneDayEffort * perHourWage;
-                System.out.println("Maximum Monthly Wage Possible For Temporary Employee Is : " + maximumWagePossible());
+                System.out.println("Maximum Monthly Wage Possible For Part Time Employee Is : " + maximumWagePossible());
                 break;
            default :
                 System.out.println("Please Provide only authorized input");
